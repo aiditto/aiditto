@@ -1,0 +1,22 @@
+{
+  "navbar": {
+    "home": "Hem",
+    "supplyCoordinator": {
+      "title": "Admin",
+      "manage": "Lägg till instruktioner",
+      "demand": {
+        "create": "Skappa nytt behov"
+      }
+    },
+    "user": {
+      "signIn": "Logga in",
+      "signOut": "Logga ut",
+      "signUp": "Registrera"
+    },
+    "supplier": "Producent",
+    "news": {
+      "title": "Nyheter",
+      "add": "Lägg till nyhet"
+    }
+  }
+}

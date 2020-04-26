@@ -1,0 +1,22 @@
+{
+  "navbar": {
+    "home": "Home",
+    "supplyCoordinator": {
+      "title": "Admin",
+      "manage": "Add instructions",
+      "demand": {
+        "create": "Create new need"
+      }
+    },
+    "user": {
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "signUp": "Sign up"
+    },
+    "supplier": "Supplier",
+    "news": {
+      "title": "News",
+      "add": "Add news"
+    }
+  }
+}
