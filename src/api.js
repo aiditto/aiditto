@@ -20,8 +20,9 @@ export const API = {
     getSwe: "/location/1/cities "
   },
   wp: {
-    info: "/wp/page_info",
-    news: "/wp/news"
+    page_info: "/wp/page-info",
+    news: "/wp/news",
+    item_info: "/wp/item-info"
   }
 };
 

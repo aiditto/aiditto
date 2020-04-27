@@ -5,41 +5,51 @@ import React, { useState, useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import styles from "assets/jss/material-dashboard-pro-react/layouts/newsPageStyle";
 import { Grid, Button } from "@material-ui/core";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputBase from "@material-ui/core/InputBase";
+import Autocomplete, { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/rootAction";
 import { WORDPRESS_SELECTORS } from "../../store/selectors/rootSelector";
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import TextField from "@material-ui/core/TextField";
+import messages from "variables/messages";
 // import Footer from "components/Footer/Footer.js";
-
-const BootstrapInput = withStyles(() => ({
-  input: {
-    margin: "0 0 40px 0",
-    position: "relative",
-    border: "unset"
-  }
-}))(InputBase);
 
 const useStyles = makeStyles(styles);
 const NewsPage = props => {
   const { ...rest } = props;
   // styles
   const classes = useStyles();
-  const [origin, setNewsOrigin] = React.useState("");
-  const postfix = "_news";
+  const filterOptions = createFilterOptions({
+    matchFrom: "start",
+    stringify: option => option.city
+  });
+  const postfix = "-news";
 
-  const handleChange = event => {
-    let query = event.target.value.toLowerCase();
-    props.updateNewsFilter(event.target.value);
-    if (event.target.value !== "") {
+  const handleChange = value => {
+    let query = value;
+    if (query !== "") {
+      query = value.city.toLowerCase();
+      props.updateNewsFilter(value.city);
+      query = mapToInternationalLetter(query);
       query = query + postfix;
     }
     props.getNews(query);
+  };
+
+  const mapToInternationalLetter = value => {
+    let parsedValue = value;
+    if (value.includes("ö")) {
+      parsedValue = value.replace(/ö/g, "o");
+    }
+    if (value.includes("ä")) {
+      parsedValue = value.replace(/ä/g, "a");
+    }
+    if (value.includes("å")) {
+      parsedValue = value.replace(/å/g, "a");
+    }
+    return parsedValue;
   };
 
   useEffect(() => {
@@ -58,20 +68,23 @@ const NewsPage = props => {
       <Grid item xs={8}>
         <div className={classes.innerColumn}>
           <h2 className={classes.sectionTitle}>Nyheter</h2>
-          <FormControl className={classes.formControl}>
-            <Select
-              value={props.newsFilter}
-              onChange={handleChange}
-              displayEmpty
-              input={<BootstrapInput />}
-              className={classes.selectEmpty}
-            >
-              <MenuItem value="">Visa alla kommuner</MenuItem>
-              <MenuItem value={"Malmö"}>Malmö</MenuItem>
-              <MenuItem value={"Lund"}>Lund</MenuItem>
-              <MenuItem value={"Halmstad"}>Halmstad</MenuItem>
-            </Select>
-          </FormControl>
+          <Grid item xs={8}>
+            <Autocomplete
+              noOptionsText={messages.NO_CITIES_SELECTED}
+              filterOptions={filterOptions}
+              id="cities-box"
+              options={props.cities}
+              getOptionLabel={option => (option ? option.city : "All")}
+              renderInput={params => <TextField placeholder="Stad..." {...params} value={props.newsFilter} />}
+              onChange={(event, value) => {
+                if (value) {
+                  handleChange(value);
+                } else {
+                  handleChange("");
+                }
+              }}
+            />
+          </Grid>
           <Grid item xs={12}>
             {props.loading && <CircularProgress />}
             {props.news.map(newsItem => {
@@ -101,7 +114,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getNews: cityName => dispatch(actions.getNewsFromWp(cityName)),
+    getNews: category => dispatch(actions.getNewsFromWp(category)),
     getCities: () => dispatch(actions.getSweCities()),
     updateNewsFilter: newsFilter => dispatch(actions.updateNewsFilter(newsFilter))
   };

@@ -84,7 +84,8 @@ const styles = theme => ({
     lineHeight: "49px"
   },
   partAmmount: {
-    textAlign: "end"
+    textAlign: "end",
+    backgroundColor: "#fefefe !important"
   },
   fullAmmount: {
     textAlign: "start"

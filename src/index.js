@@ -24,6 +24,7 @@ import ProducersPage from "layouts/producers/ProducersPage";
 import NewsPage from "layouts/news/NewsPage";
 import AuthRoute from "components/AuthRoute";
 import ErrorPage from "views/Pages/ErrorPage";
+import CreateAssets from "layouts/createAssets/CreateAssets";
 import NotificationContainer from "components/Notification/NotificationContainer";
 import "./i18n";
 
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/nyheter" component={NewsPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={RegisterPage} />
+            <Route path="/createasset/:name" component={CreateAssets} />
             <AuthRoute path="/admin" component={AdminPage} />
             <AuthRoute path="/producent" component={ProducersPage} />
             <Route component={ErrorPage} />

@@ -107,6 +107,11 @@ const styles = theme => ({
     [theme.breakpoints.down("md")]: {
       justifyContent: "center !important"
     }
+  },
+  mobileFixInput: {
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center !important"
+    }
   }
 });
 

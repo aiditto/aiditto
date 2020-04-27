@@ -3,7 +3,7 @@
 import { API, Axios } from "api";
 const wordpressService = {
   info: (instance, slug, callback) => {
-    Axios.get(API.wp.info, {
+    Axios.get(API.wp.page_info, {
       params: {
         instance: instance,
         slug: slug
@@ -18,16 +18,20 @@ const wordpressService = {
         callback(error);
       });
   },
-  news: (instance, callback) => {
+  news: (category, callback) => {
     Axios.get(API.wp.news, {
       params: {
-        instance: instance
+        category: category
       }
-    }).then(response => {
-      if (response && response.data) {
-        callback(response);
-      }
-    });
+    })
+      .then(response => {
+        if (response && response.data) {
+          callback(response);
+        }
+      })
+      .catch(error => {
+        callback(error);
+      });
   }
 };
 

@@ -9,6 +9,7 @@ const messages = {
   DEMAND_ADDED_ERROR: "Error: Misslyckades att lägga till behov",
   DEMAND_DELETED_ERROR: "Error: Behöver raderas misslyckades",
   DEMAND_UPDATED_ERROR: "",
-  DEMAND_DELETED_DIALOG_MESSAGE: ""
+  DEMAND_DELETED_DIALOG_MESSAGE: "",
+  NO_CITIES_SELECTED: "Kontrollera stavningen"
 };
 export default messages;

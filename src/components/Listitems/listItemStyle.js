@@ -8,6 +8,10 @@ const styles = theme => ({
     fontSize: "0.5rem",
     display: "flex",
     flexWrap: "wrap"
+    // [theme.breakpoints.down("xs")]: {
+    //   flexDirection: "column !important",
+    //   justifyContent: "center !important"
+    // }
   },
   listInfoButton: {
     backgroundColor: "grey",
@@ -18,28 +22,28 @@ const styles = theme => ({
     color: "white"
   },
   dialogTitle: {
-    fontSize: '2.4em',
+    fontSize: "2.4em",
     fontWeight: 800,
     margin: 0
   },
   dialogProceed: {
-    padding: '12px 28px',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.25)',
-    color: 'white',
-    fontSize: '1.2em',
-    fontWeight: 'bold',
-    textTransform: 'none',
-    '&, &:hover': {
-      backgroundColor: '#e35756'
+    padding: "12px 28px",
+    borderRadius: "8px",
+    boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
+    color: "white",
+    fontSize: "1.2em",
+    fontWeight: "bold",
+    textTransform: "none",
+    "&, &:hover": {
+      backgroundColor: "#e35756"
     }
   },
   dialogCancel: {
-    padding: '12px 28px',
-    borderRadius: '8px',
-    fontSize: '1.2em',
-    fontWeight: 'bold',
-    textTransform: 'none'
+    padding: "12px 28px",
+    borderRadius: "8px",
+    fontSize: "1.2em",
+    fontWeight: "bold",
+    textTransform: "none"
   }
 });
 
