@@ -93,9 +93,11 @@ const ListItems = props => {
           <Button size="large" square="true" onClick={handleClose} className={classes.dialogCancel}>
             Stäng
           </Button>
-          <Button size="large" square="true" color="primary" className={classes.dialogProceed}>
-            Erbjud hjälp
-          </Button>
+          <Link to={{ pathname: `/createasset/${item.itemname}` }}>
+            <Button size="large" square="true" color="primary" className={classes.dialogProceed}>
+              Erbjud hjälp
+            </Button>
+          </Link>
         </DialogActions>
       </Dialog>
     </Grid>
